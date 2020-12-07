@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.gan.mapper.LoginMapper">
+
+	<select id="getStudentByLogin" parameterType="String" resultType="student">
+		SELECT
+			s.* 
+		FROM
+			student s
+			LEFT JOIN login l ON l.sno = s.sno 
+		WHERE
+			l.account = #{account}
+			AND l.passwd = #{password}
+	</select>
+	
+	<update id="changePassword" parameterType="String">
+		update login set passwd = #{newpassword} where sno=#{sno} and passwd=#{password}
+	</update>
+	
+	<insert id="insertLogin" parameterType="login">
+		insert into login(account, passwd, recorder, recordtime, sno) values(#{account}, #{passwd}, #{recorder}, #{recordtime}, #{sno})
+	</insert>
+	
+	<!-- <insert id="insertStudent" parameterType="student">
+		insert into student(sno,sname,score,project) values(#{sno},#{sname},#{score},#{project})
+	</insert>
+	
+	<delete id="deleteStudent" parameterType="int">
+		delete from student where sno=#{sno}
+	</delete>
+	
+	<update id="updateStudent" parameterType="student">
+		update student set sname=#{sname},score=#{score},project=#{project} where sno=#{sno}
+	</update>
+	
+	<select id="selectAllSno" resultMap="snoMap">
+		select sno from student
+	</select>
+	
+	<resultMap id="snoMap" type="java.lang.Integer">
+		<id property="sno" column="sno" javaType="java.lang.Integer" />
+	</resultMap> -->
+
+</mapper>

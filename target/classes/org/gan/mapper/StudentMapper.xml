@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.gan.mapper.StudentMapper">
+
+	<select id="getAllStudent" resultType="student">
+		select * from student
+	</select>
+	
+	<select id="getStudentByID" parameterType="int" resultType="student">
+		select * from student where sno=#{sno}
+	</select>
+	
+	<insert id="insertStudent" parameterType="student">
+		insert into student(sno,sname,score,project) values(#{sno},#{sname},#{score},#{project})
+	</insert>
+	
+	<delete id="deleteStudent" parameterType="int">
+		delete from student where sno=#{sno}
+	</delete>
+	
+	<update id="updateStudent" parameterType="student">
+		update student set sname=#{sname},score=#{score},project=#{project} where sno=#{sno}
+	</update>
+	
+	<select id="selectAllSno" resultMap="snoMap">
+		select sno from student
+	</select>
+	
+	<resultMap id="snoMap" type="java.lang.Integer">
+		<id property="sno" column="sno" javaType="java.lang.Integer" />
+	</resultMap>
+
+</mapper>
