@@ -1,7 +1,7 @@
 # maven-ssm
 useing springmvc、mybatis、bootstrap to completed a simple student crud
 
-# 数据库 Mybatis 5.6
+# 数据库 MySql 5.6
 CREATE TABLE student(
 	sno INT PRIMARY KEY NOT NULL,
 	sname VARCHAR(300),
